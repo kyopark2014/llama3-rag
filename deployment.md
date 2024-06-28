@@ -15,8 +15,8 @@
 - [Model access - Mumbai](https://ap-south-1.console.aws.amazon.com/bedrock/home?region=ap-south-1#/modelaccess)  -->
 
 
-![noname](./imagemodels.png)
-
+<img src="./imagemodels.png" width="600">
+   
 
 ## CDK를 이용한 인프라 설치하기
 
