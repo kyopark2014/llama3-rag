@@ -157,7 +157,6 @@ def get_chat():
     bedrock_region =  profile['bedrock_region']
     modelId = profile['model_id']
     print(f'LLM: {selected_chat}, bedrock_region: {bedrock_region}, modelId: {modelId}')
-    maxOutputTokens = int(profile['maxOutputTokens'])
                           
     # bedrock   
     boto3_bedrock = boto3.client(
@@ -170,12 +169,10 @@ def get_chat():
         )
     )
     parameters = {
-        "max_tokens":maxOutputTokens,     
-        "temperature":0.1,
-        "top_k":250,
-        "top_p":0.9,
-        "stop_sequences": [HUMAN_PROMPT]
-    }
+        "max_gen_len": 1024,  
+        "top_p": 0.9, 
+        "temperature": 0.1
+    }    
     # print('parameters: ', parameters)
 
     chat = ChatBedrock(   # new chat model
@@ -189,46 +186,6 @@ def get_chat():
         selected_chat = 0
     
     return chat
-
-def get_multimodal():
-    global selected_multimodal
-    
-    profile = LLM_for_multimodal[selected_multimodal]
-    bedrock_region =  profile['bedrock_region']
-    modelId = profile['model_id']
-    print(f'LLM: {selected_multimodal}, bedrock_region: {bedrock_region}, modelId: {modelId}')
-    maxOutputTokens = int(profile['maxOutputTokens'])
-                          
-    # bedrock   
-    boto3_bedrock = boto3.client(
-        service_name='bedrock-runtime',
-        region_name=bedrock_region,
-        config=Config(
-            retries = {
-                'max_attempts': 30
-            }
-        )
-    )
-    parameters = {
-        "max_tokens":maxOutputTokens,     
-        "temperature":0.1,
-        "top_k":250,
-        "top_p":0.9,
-        "stop_sequences": [HUMAN_PROMPT]
-    }
-    # print('parameters: ', parameters)
-
-    multimodal = ChatBedrock(   # new chat model
-        model_id=modelId,
-        client=boto3_bedrock, 
-        model_kwargs=parameters,
-    )    
-    
-    selected_multimodal = selected_multimodal + 1
-    if selected_multimodal == len(LLM_for_multimodal):
-        selected_multimodal = 0
-    
-    return multimodal
 
 def get_embedding():
     global selected_embedding

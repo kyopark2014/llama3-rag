@@ -22,7 +22,7 @@ const accountId = process.env.CDK_DEFAULT_ACCOUNT
 const debug = false;
 const stage = 'dev';
 const s3_prefix = 'docs';
-const projectName = `llm-multimodal-and-rag`; 
+const projectName = `llama3-rag`; 
 const bucketName = `storage-for-${projectName}-${accountId}-${region}`; 
 
 const opensearch_account = "admin";
@@ -41,69 +41,26 @@ const enalbeParentDocumentRetrival = 'true';
 const enableImageExtraction = 'false';
 const enableHybridSearch = 'true';
 
-const claude3_sonnet = [
+const llama3 = [
   {
     "bedrock_region": "us-west-2", // Oregon
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-sonnet-20240229-v1:0",   
-    "maxOutputTokens": "4096"
+    "model_type": "llama3",
+    "model_id": "meta.llama3-70b-instruct-v1:0"
   },
   {
     "bedrock_region": "us-east-1", // N.Virginia
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-sonnet-20240229-v1:0",
-    "maxOutputTokens": "4096"
+    "model_type": "llama3",
+    "model_id": "meta.llama3-70b-instruct-v1:0"
   },
   {
     "bedrock_region": "ca-central-1", // Canada
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-sonnet-20240229-v1:0",
-    "maxOutputTokens": "4096"
+    "model_type": "llama3",
+    "model_id": "meta.llama3-70b-instruct-v1:0"
   },
   {
     "bedrock_region": "eu-west-2", // London
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-sonnet-20240229-v1:0",
-    "maxOutputTokens": "4096"
-  },
-  {
-    "bedrock_region": "sa-east-1", // Sao Paulo
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-sonnet-20240229-v1:0",
-    "maxOutputTokens": "4096"
-  }
-];
-
-const claude3_haiku = [
-  {
-    "bedrock_region": "us-west-2", // Oregon
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-haiku-20240307-v1:0",   
-    "maxOutputTokens": "4096"
-  },
-  {
-    "bedrock_region": "us-east-1", // N.Virginia
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-haiku-20240307-v1:0",
-    "maxOutputTokens": "4096"
-  },
-  {
-    "bedrock_region": "ca-central-1", // Canada
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-haiku-20240307-v1:0",
-    "maxOutputTokens": "4096"
-  },
-  {
-    "bedrock_region": "eu-west-2", // London
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-haiku-20240307-v1:0",
-    "maxOutputTokens": "4096"
-  },
-  {
-    "bedrock_region": "sa-east-1", // Sao Paulo
-    "model_type": "claude3",
-    "model_id": "anthropic.claude-3-haiku-20240307-v1:0",
-    "maxOutputTokens": "4096"
+    "model_type": "llama3",
+    "model_id": "meta.llama3-70b-instruct-v1:0"
   }
 ];
 
@@ -138,11 +95,6 @@ const titan_embedding_v2 = [
   },
   {
     "bedrock_region": "eu-west-2", // London
-    "model_type": "titan",
-    "model_id": "amazon.titan-embed-text-v2:0"
-  },
-  {
-    "bedrock_region": "sa-east-1", // Sao Paulo
     "model_type": "titan",
     "model_id": "amazon.titan-embed-text-v2:0"
   }
@@ -629,8 +581,7 @@ export class CdkLlama3RagBotStack extends cdk.Stack {
         debugMessageMode: debugMessageMode,
         useParallelRAG: useParallelRAG,
         numberOfRelevantDocs: numberOfRelevantDocs,
-        LLM_for_chat: JSON.stringify(claude3_sonnet),          
-        LLM_for_multimodal: JSON.stringify(claude3_sonnet),          
+        LLM_for_chat: JSON.stringify(llama3),          
         LLM_embedding: JSON.stringify(titan_embedding_v2),
         priorty_search_embedding: JSON.stringify(titan_embedding_v1),
         googleApiSecret: googleApiSecret.secretName,
@@ -747,8 +698,7 @@ export class CdkLlama3RagBotStack extends cdk.Stack {
           sqsUrl: queueUrl[i],
           max_object_size: String(max_object_size),
           supportedFormat: supportedFormat,
-          LLM_for_chat: JSON.stringify(claude3_sonnet),          
-          LLM_for_multimodal: JSON.stringify(claude3_sonnet),          
+          LLM_for_chat: JSON.stringify(llama3),          
           LLM_embedding: JSON.stringify(titan_embedding_v2),
           enableParallelSummay: enableParallelSummay,
           enalbeParentDocumentRetrival: enalbeParentDocumentRetrival,
