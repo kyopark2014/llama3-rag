@@ -52,7 +52,6 @@ path = os.environ.get('path')
 doc_prefix = s3_prefix+'/'
 speech_prefix = 'speech/'
 LLM_for_chat = json.loads(os.environ.get('LLM_for_chat'))
-LLM_for_multimodal= json.loads(os.environ.get('LLM_for_multimodal'))
 LLM_embedding = json.loads(os.environ.get('LLM_embedding'))
 priorty_search_embedding = json.loads(os.environ.get('priorty_search_embedding'))
 enalbeParentDocumentRetrival = os.environ.get('enalbeParentDocumentRetrival')
