@@ -8,7 +8,6 @@
 - [Model access - N.Virginia](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/modelaccess)
 - [Model access - Canada](https://ca-central-1.console.aws.amazon.com/bedrock/home?region=ca-central-1#/modelaccess)
 - [Model access - London](https://eu-west-2.console.aws.amazon.com/bedrock/home?region=eu-west-2#/modelaccess)
-- [Model access - Sao Paulo](https://sa-east-1.console.aws.amazon.com/bedrock/home?region=sa-east-1#/modelaccess)
 
 <!-- 
 - [Model access - Sydney](https://ap-southeast-2.console.aws.amazon.com/bedrock/home?region=ap-southeast-2#/modelaccess),
