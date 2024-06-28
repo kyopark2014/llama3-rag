@@ -1,12 +1,15 @@
-![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/7e58d775-3f56-42c4-b230-230326c89e2a)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/3f34136b-aa33-4d74-80ff-658afab1210c)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/ae76c81b-f122-4f20-85af-96e449c866a4)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/8ce28cb1-59bc-4b53-a1f6-81e23c2247fa)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/e406ac1d-ebbd-4282-98f5-f06e39616543)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/104e6945-d4a0-44dd-9d29-413ef9d94e7c)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/ed9f0946-ea8c-4af3-a7e3-7b3c3e97a5b1)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/2deb9056-081d-46e8-8e6f-8f46364f74e7)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/7ced736a-efd5-4938-9750-1aa5113c4752)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/96059934-6974-435a-bb97-52c4b4d1ac34)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/558d11d2-59fc-48d8-a75f-fb55369ee23a)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/d9cac40a-3062-4537-9970-cd4ef75ec19a)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/f0814601-dd0c-436f-8892-5d24b87209a3)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/fb81c0a3-38a8-496f-96ee-877898b337d7)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/06fab85b-2fd6-40e2-ab0a-bb2e91eb248a)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/ed4c8d03-0891-4156-bf8b-901c90558a6c)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/b0edd478-ca57-4760-97f8-f00e70900b59)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/d427b4d8-cf5b-4b93-aac3-d66061ddb84d)![image](https://github.com/kyopark2014/llama3-rag/assets/52392004/38932dde-7532-41a6-ac5e-4aa914ec5f2f)# llama3-rag
+# Llama3로 RAG 구현하기
 
-전체적인 Architecture는 아래와 같습니다.
+여기에선 Llama3와 OpenSearch를 이용하여 RAG를 구현합니다. 전체적인 Architecture는 아래와 같습니다.
 
 <img src="./images/basic-architecture.png" width="800">
-   
+
+
 ## System Design
 
 ### LangChain
+
+LangChain의 [ChatBedrock](https://python.langchain.com/v0.2/docs/integrations/chat/bedrock/)로 API을 이용합니다.
 
 ```python
 boto3_bedrock = boto3.client(
@@ -32,6 +35,8 @@ chat = ChatBedrock(
 ```
 
 ### Basic Chat
+
+Prompt를 이용해 chatbot의 이름과 Role을 지정할 수 있습니다. Chat history는 MessagesPlaceholder()를 이용해 반영합니다.
 
 ```python
 def general_conversation(connectionId, requestId, chat, query):
