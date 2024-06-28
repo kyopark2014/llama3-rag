@@ -70,4 +70,21 @@ def general_conversation(connectionId, requestId, chat, query):
     return msg
 ```
 
+여기서 Stream은 아래와 같이 event를 추출하여 json format으로 client에 결과를 전달합니다. 
+
+```python
+def readStreamMsg(connectionId, requestId, stream):
+    msg = ""
+    if stream:
+        for event in stream:
+            msg = msg + event
+
+            result = {
+                'request_id': requestId,
+                'msg': msg,
+                'status': 'proceeding'
+            }
+            sendMessage(connectionId, result)
+    return msg
+```
 
