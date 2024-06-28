@@ -39,7 +39,6 @@ opensearch_url = os.environ.get('opensearch_url')
 sqsUrl = os.environ.get('sqsUrl')
 doc_prefix = s3_prefix+'/'
 LLM_for_chat = json.loads(os.environ.get('LLM_for_chat'))
-LLM_for_multimodal= json.loads(os.environ.get('LLM_for_multimodal'))
 LLM_embedding = json.loads(os.environ.get('LLM_embedding'))
 selected_chat = 0
 selected_multimodal = 0
