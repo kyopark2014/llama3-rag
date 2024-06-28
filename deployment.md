@@ -15,7 +15,7 @@
 - [Model access - Mumbai](https://ap-south-1.console.aws.amazon.com/bedrock/home?region=ap-south-1#/modelaccess)  -->
 
 
-![noname](https://github.com/kyopark2014/llm-chatbot-using-claude3/assets/52392004/ca7f361a-1993-498e-93b6-ef19c620cbb1)
+![noname](./imagemodels.png)
 
 
 ## CDK를 이용한 인프라 설치하기
