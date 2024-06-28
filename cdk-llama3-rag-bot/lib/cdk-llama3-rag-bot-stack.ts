@@ -51,7 +51,7 @@ const llama3 = [
     "bedrock_region": "us-east-1", // N.Virginia
     "model_type": "llama3",
     "model_id": "meta.llama3-70b-instruct-v1:0"
-  },
+  }, 
   {
     "bedrock_region": "ca-central-1", // Canada
     "model_type": "llama3",
